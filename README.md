@@ -1,340 +1,397 @@
 # 🚀 SLA Breach Predictor
 
-An AI-powered tool that analyzes support tickets for SLA breach risk, helping teams identify and address at-risk tickets before they breach. Supports both CSV file upload and direct Jira integration.
+## Project Overview
+
+SLA Breach Predictor is a Generative AI-powered application that predicts the risk of Service Level Agreement (SLA) breaches in support tickets before they occur.
+
+The application uses a Large Language Model (LLM) to analyze ticket information such as priority, ticket age, SLA deadlines, status, and comments. Based on this analysis, it calculates a breach risk score and provides detailed reasoning behind the prediction.
+
+The main objective of this project is to help support teams proactively identify high-risk tickets, reduce SLA violations, improve operational efficiency, and enhance customer satisfaction through AI-powered prediction and automation.
+
+### Live Demo
+
+🎥 Demo Video: https://www.loom.com/share/82c26d5304b341a6b59c04d5e074dd16
+
+---
 
 ## Features
 
-- **🤖 AI-Powered Scoring**: Uses LLM (OpenAI GPT-3.5 or Anthropic Claude) to analyze ticket complexity and breach risk
-- **📁 CSV Upload**: Upload ticket data from CSV files for analysis
-- **🎯 Jira Integration**: Automatically fetches tickets directly from Jira using API
-- **📊 Colorful Dashboard**: Modern, gradient-based UI with beautiful visualizations
-- **⚡ Real-time Analysis**: Automatic AI analysis as soon as tickets are loaded
-- **📈 Risk Categorization**: Scores tickets 1-10 with detailed reasoning
-- **⏱️ Time Metrics**: Calculates hours open, SLA remaining, and percentage used
-- **📝 Jira Updates**: Option to update Jira tickets with risk scores as comments
-- **📥 Export Reports**: Generates CSV reports with breach risk analysis
+* 🤖 AI-Powered Risk Prediction
+* 📁 CSV File Upload Support
+* ⚡ Real-Time Ticket Analysis
+* 📊 Interactive Streamlit Dashboard
+* 🎯 Risk Categorization (1–10 Scale)
+* ⏱️ SLA Time Metrics Calculation
+* 📝 AI-Generated Breach Reasoning
+* 📈 Risk Distribution Visualization
+* 📥 CSV Report Export
+* 🚨 Early Detection of High-Risk Tickets
 
-## Installation
+---
 
-### Prerequisites
+## How It Works
 
-- Python 3.10+
-- OpenAI API key or Anthropic API key
-- Jira API token (for Jira integration)
+```text
+User Uploads Ticket Data
+            |
+            ↓
+     Streamlit Dashboard
+            |
+            ↓
+      Data Processing
+            |
+            ↓
+ Time Metrics Calculation
+            |
+            ↓
+      AI Risk Analysis
+            |
+            ↓
+ Breach Risk Prediction
+            |
+            ↓
+ Report Generation
+            |
+            ↓
+ Dashboard Visualization
+```
 
-### Setup
+### Workflow
 
-1. Clone or download this repository
+User uploads a CSV file containing support ticket information.
 
-2. Install dependencies:
+The application processes and validates the ticket data.
+
+The system calculates important SLA metrics such as:
+
+* Hours Open
+* SLA Remaining
+* SLA Percentage Used
+
+The AI model analyzes ticket details including priority, status, and comments.
+
+The LLM predicts the likelihood of SLA breach and assigns a risk score from 1 to 10.
+
+AI generates a detailed explanation for the assigned score.
+
+Results are displayed through the Streamlit dashboard.
+
+The final report is exported as a CSV file for future analysis.
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* Streamlit
+* HTML
+* CSS
+
+### Backend
+
+* Python
+
+### Data Processing
+
+* Pandas
+* Datetime
+
+### AI Components
+
+* Large Language Model (LLM)
+* Prompt Engineering
+* AI Risk Assessment Engine
+
+### Reporting
+
+* CSV Export
+
+---
+
+## AI Model
+
+The application uses a Large Language Model to intelligently analyze support tickets and predict SLA breach risks.
+
+### Models Supported
+
+* OpenAI GPT-3.5 Turbo
+* Anthropic Claude
+
+### AI Model Responsibilities
+
+* Understand ticket context
+* Analyze urgency and complexity
+* Evaluate SLA pressure
+* Predict breach probability
+* Generate risk scores
+* Provide detailed reasoning
+
+---
+
+## Project Architecture
+
+```text
+                    User
+                      |
+                      ↓
+             Streamlit Dashboard
+                      |
+                      ↓
+              Data Processing
+                      |
+                      ↓
+        Time Metrics Calculation
+                      |
+                      ↓
+              AI Risk Engine
+                      |
+                      ↓
+          Large Language Model
+                      |
+                      ↓
+      Breach Risk Score & Reason
+                      |
+                      ↓
+          CSV Report Generation
+                      |
+                      ↓
+         Dashboard Visualization
+```
+
+---
+
+## Folder Structure
+
+```text
+SLA-Breach-Predictor/
+
+│
+├── tickets.csv
+│
+├── sla_scorer.py
+│
+├── streamlit_dashboard.py
+│
+├── requirements.txt
+│
+├── .env.example
+│
+├── README.md
+│
+└── breach_risk_report.csv
+```
+
+---
+
+## Installation and Setup
+
+### 1. Clone Repository
+
+```bash
+git clone <repository-url>
+```
+
+### 2. Navigate to Project Directory
+
+```bash
+cd SLA-Breach-Predictor
+```
+
+### 3. Create Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### 4. Activate Virtual Environment
+
+Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+### 5. Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Configure environment variables:
-```bash
-cp .env.example .env
-```
+### 6. Configure Environment Variables
 
-4. Edit `.env` and add your API key:
 ```env
-OPENAI_API_KEY=your-openai-api-key-here
+OPENAI_API_KEY=your-api-key
+
 # OR
-ANTHROPIC_API_KEY=your-anthropic-api-key-here
 
-LLM_PROVIDER=openai  # Choose 'openai' or 'anthropic'
+ANTHROPIC_API_KEY=your-api-key
 
-# Jira Configuration (optional, for Jira integration)
-JIRA_URL=https://your-domain.atlassian.net
-JIRA_EMAIL=your-email@example.com
-JIRA_API_TOKEN=your-jira-api-token-here
+LLM_PROVIDER=openai
 ```
 
-## Usage
-
-### CLI Tool
-
-**Analyze CSV file:**
-
-```bash
-python sla_scorer.py tickets.csv
-```
-
-**Fetch tickets from Jira and analyze:**
-
-```bash
-python sla_scorer.py --source jira --jira-project PROJ
-```
-
-**With custom JQL query:**
-
-```bash
-python sla_scorer.py --source jira --jql "priority = High AND created >= -7d"
-```
-
-**Update Jira tickets with risk scores:**
-
-```bash
-python sla_scorer.py --source jira --jira-project PROJ --update-jira
-```
-
-The tool will:
-- Load tickets from CSV or fetch from Jira
-- Calculate time metrics (hours open, SLA remaining)
-- Call the LLM to score each ticket's breach risk (1-10)
-- Generate a `breach_risk_report.csv` file
-- Display a formatted report in the terminal with color-coded risk levels
-- Optionally update Jira tickets with risk scores as comments
-
-### Streamlit Dashboard
-
-Launch the colorful interactive dashboard:
+### 7. Run Application
 
 ```bash
 streamlit run streamlit_dashboard.py
 ```
 
-The dashboard provides:
-- 🎨 Modern gradient-based UI with beautiful colors
-- 📁 CSV file upload option for manual data
-- 🔗 Direct Jira integration to fetch tickets automatically
-- 🤖 Automatic AI analysis as soon as tickets are loaded
-- 📊 Colorful risk score distribution charts
-- ⏱️ SLA time analysis with visual indicators
-- 🎫 Color-coded ticket cards by risk level
-- 📝 Option to update Jira tickets with risk scores
-- 📥 Export reports to CSV
+---
 
-## Jira Integration
+## Input Data
 
-### Setting up Jira API Access
+The application accepts support ticket information in CSV format.
 
-1. **Generate Jira API Token:**
-   - Go to [Atlassian Account Settings](https://id.atlassian.com/manage-profile/security/api-tokens)
-   - Click "Create API token"
-   - Label it (e.g., "SLA Breach Predictor")
-   - Copy the generated token
+### Required Columns
 
-2. **Configure Environment Variables:**
-   Add the following to your `.env` file:
-   ```env
-   JIRA_URL=https://your-domain.atlassian.net
-   JIRA_EMAIL=your-email@example.com
-   JIRA_API_TOKEN=your-generated-api-token
-   ```
+| Column     | Description              | Example                 |
+| ---------- | ------------------------ | ----------------------- |
+| ticket_id  | Unique ticket identifier | TKT-001                 |
+| subject    | Ticket title             | Login issue             |
+| priority   | Ticket priority          | High                    |
+| created_at | Creation timestamp       | 2026-06-10 09:00        |
+| sla_hours  | SLA deadline hours       | 8                       |
+| status     | Current status           | Open                    |
+| comments   | Additional details       | Multiple users affected |
 
-3. **Test Jira Connection:**
-   ```bash
-   python jira_client.py
-   ```
+---
 
-### Using Jira with CLI
-
-**Fetch tickets from a specific project:**
-```bash
-python sla_scorer.py --source jira --jira-project PROJ
-```
-
-**Use custom JQL query:**
-```bash
-python sla_scorer.py --source jira --jql "priority = High AND created >= -7d"
-```
-
-**Update Jira tickets with risk scores:**
-```bash
-python sla_scorer.py --source jira --jira-project PROJ --update-jira
-```
-
-### Using Streamlit Dashboard
-
-1. Launch the dashboard: `streamlit run streamlit_dashboard.py`
-2. Select data source in sidebar:
-   - **CSV File**: Upload your tickets.csv file
-   - **Jira**: Configure Jira connection and fetch tickets
-3. For Jira:
-   - Enter your Jira project key (e.g., "PROJ")
-   - Optionally provide a custom JQL query
-   - Set the maximum number of tickets to fetch
-   - Check "Update Jira Tickets with Risk Scores" if you want to write back to Jira
-4. Click the fetch/upload button to load tickets
-5. AI will automatically analyze the tickets
-6. View risk scores, charts, and detailed analysis
-7. Optionally update Jira tickets with risk scores (Jira mode only)
-8. Export results to CSV
-
-## CSV Format
-
-The input CSV file should have the following columns:
-
-| Column | Description | Example |
-|--------|-------------|---------|
-| ticket_id | Unique ticket identifier | TKT-001 |
-| subject | Ticket subject/title | Login fails for enterprise users |
-| priority | Priority level | High, Medium, Low, Critical |
-| created_at | Ticket creation timestamp | 2026-06-10 09:00 |
-| sla_hours | SLA deadline in hours | 8 |
-| status | Current ticket status | Open, In Progress, Closed |
-| comments | Additional ticket details | Multiple users reporting issues |
-
-### Sample CSV
+## Sample CSV
 
 ```csv
 ticket_id,subject,priority,created_at,sla_hours,status,comments
 TKT-001,Login fails for enterprise users,High,2026-06-10 09:00,8,Open,"Multiple users reporting authentication issues"
 TKT-002,Database connection timeout,Medium,2026-06-12 14:30,24,Open,"Intermittent connection drops during peak hours"
-TKT-003,Payment gateway not responding,Critical,2026-06-13 08:00,4,Open,"Customers unable to complete transactions"
+TKT-003,Payment gateway failure,Critical,2026-06-13 08:00,4,Open,"Customers unable to complete transactions"
 ```
+
+---
 
 ## Risk Scoring
 
-The AI scores tickets on a scale of 1-10:
+The AI assigns risk scores on a scale of 1 to 10.
 
-- **1-3 (Low Risk)**: Plenty of SLA time remaining, low priority
-- **4-6 (Medium Risk)**: Moderate SLA pressure or medium priority
-- **7-8 (High Risk)**: Limited SLA time remaining or high priority
-- **9-10 (Critical Risk)**: SLA about to breach or already breached, critical priority
+### Risk Categories
+
+| Score | Risk Level    |
+| ----- | ------------- |
+| 1-3   | Low Risk      |
+| 4-6   | Medium Risk   |
+| 7-8   | High Risk     |
+| 9-10  | Critical Risk |
+
+### Factors Considered
+
+* Ticket Priority
+* Hours Open
+* Remaining SLA Time
+* SLA Utilization Percentage
+* Ticket Status
+* Issue Complexity
+* Customer Impact
+* Ticket Comments
+
+---
 
 ## Output
 
-### CLI Output
+### Dashboard Output
 
-The CLI displays:
-- Color-coded risk levels (red for critical, yellow for high, green for low)
-- Sorted list of tickets by risk score (highest first)
-- Summary statistics (total tickets, risk distribution)
-- Detailed reasoning for each score
+The dashboard displays:
+
+* Total Tickets
+* High-Risk Ticket Count
+* Risk Distribution Charts
+* SLA Utilization Metrics
+* Ticket-Wise Analysis
+* AI Generated Explanations
 
 ### CSV Report
 
-The `breach_risk_report.csv` includes:
-- Original ticket data
-- Time metrics (hours_open, sla_remaining, sla_percentage_used)
-- breach_risk_score (1-10)
-- breach_reason (AI-generated explanation)
+The generated report contains:
 
-## Automation
+* Original Ticket Information
+* Hours Open
+* SLA Remaining
+* SLA Percentage Used
+* Breach Risk Score
+* Breach Reason
 
-### Cron Job
+---
 
-Run the scorer hourly and email alerts for high-risk tickets:
+## AI Model Benefits
 
-```bash
-# Add to crontab
-0 * * * * cd /path/to/sla-predictor && python sla_scorer.py && python email_alerts.py
+Traditional SLA monitoring relies on static rules and thresholds.
+
+### Traditional Approach
+
+```text
+Ticket Data
+      ↓
+Rule-Based Analysis
+      ↓
+Static Alerts
 ```
 
-### GitHub Actions
+### AI-Powered Approach
 
-Create a workflow file `.github/workflows/sla-check.yml`:
-
-```yaml
-name: SLA Breach Check
-on:
-  schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch:
-
-jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-      - name: Run SLA scorer
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python sla_scorer.py
+```text
+Ticket Data
+      ↓
+LLM Analysis
+      ↓
+Risk Prediction
+      ↓
+Actionable Insights
 ```
 
-## Email Alerts (Optional)
+### Benefits
 
-To send email alerts for tickets with score >= 7, create `email_alerts.py`:
+* Intelligent ticket evaluation
+* Context-aware risk assessment
+* Early breach detection
+* Better prioritization
+* Reduced manual effort
+* Improved SLA compliance
 
-```python
-import smtplib
-import pandas as pd
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-import os
+---
 
-def send_alerts():
-    df = pd.read_csv('breach_risk_report.csv')
-    high_risk = df[df['breach_risk_score'] >= 7]
-    
-    if len(high_risk) == 0:
-        return
-    
-    # Email configuration
-    SMTP_SERVER = os.getenv('SMTP_SERVER')
-    SMTP_PORT = int(os.getenv('SMTP_PORT', 587))
-    SMTP_USER = os.getenv('SMTP_USER')
-    SMTP_PASSWORD = os.getenv('SMTP_PASSWORD')
-    ALERT_EMAIL = os.getenv('ALERT_EMAIL')
-    
-    # Create email
-    msg = MIMEMultipart()
-    msg['From'] = SMTP_USER
-    msg['To'] = ALERT_EMAIL
-    msg['Subject'] = f'🚨 SLA Breach Alert: {len(high_risk)} high-risk tickets'
-    
-    body = f"High-risk tickets detected:\n\n"
-    for _, row in high_risk.iterrows():
-        body += f"{row['ticket_id']} - Score: {row['breach_risk_score']}/10\n"
-        body += f"Reason: {row['breach_reason']}\n\n"
-    
-    msg.attach(MIMEText(body, 'plain'))
-    
-    # Send email
-    with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-        server.starttls()
-        server.login(SMTP_USER, SMTP_PASSWORD)
-        server.send_message(msg)
+## Assumptions
 
-if __name__ == "__main__":
-    send_alerts()
-```
+* Ticket information is accurate.
+* SLA values are properly configured.
+* CSV data follows the required format.
+* AI API keys are valid and active.
 
-## Project Structure
+---
 
-```
-sla-breach-predictor/
-├── tickets.csv                      # Sample ticket data
-├── sla_scorer.py                   # CLI tool
-├── streamlit_dashboard.py          # Streamlit dashboard
-├── requirements.txt                # Python dependencies
-├── .env.example                    # Environment variables template
-├── README.md                       # This file
-└── breach_risk_report.csv          # Generated output report
-```
+## Limitations
 
-## Troubleshooting
+* Prediction quality depends on ticket data quality.
+* AI-generated predictions may require human validation.
+* Complex business scenarios may need additional rules.
+* API rate limits may affect large-scale processing.
 
-### API Key Errors
-- Ensure your `.env` file is in the project root
-- Verify the API key is correct and active
-- Check that `LLM_PROVIDER` matches your API key type
+---
 
-### CSV Parsing Errors
-- Ensure CSV has all required columns
-- Check that `created_at` is in a valid datetime format
-- Verify the file is saved as UTF-8 encoded CSV
+## Future Enhancements
 
-### LLM Rate Limits
-- If you hit rate limits, consider:
-  - Using Anthropic Claude instead of OpenAI
-  - Adding delays between API calls
-  - Implementing batch processing
+* Automated Email Alerts
+* Historical Trend Analysis
+* Real-Time Monitoring
+* Advanced Predictive Analytics
+* Cloud Deployment
+* Enhanced AI Reasoning
+* Multi-Language Ticket Analysis
+* Integration with Additional Support Platforms
 
-## License
+---
 
-This project is provided as-is for educational and production use.
+## Conclusion
 
-## Contributing
+SLA Breach Predictor demonstrates the practical use of Generative AI in IT Service Management and customer support operations.
 
-Feel free to submit issues and enhancement requests!
-# SLA-Breach-Predictor
+By combining SLA analytics, ticket data processing, and Large Language Models, the system provides intelligent breach-risk predictions that help organizations proactively manage support tickets, reduce SLA violations, and improve service quality.
+
+
+
