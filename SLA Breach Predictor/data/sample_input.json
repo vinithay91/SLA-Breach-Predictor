@@ -1,0 +1,20 @@
+{
+  "tickets": [
+    {
+      "ticket_id": "T001",
+      "priority": "high",
+      "created_at": "2024-01-15T09:00:00Z",
+      "sla_deadline": "2024-01-15T17:00:00Z",
+      "status": "open",
+      "assignee": "team_a"
+    },
+    {
+      "ticket_id": "T002",
+      "priority": "medium",
+      "created_at": "2024-01-15T10:30:00Z",
+      "sla_deadline": "2024-01-16T10:30:00Z",
+      "status": "in_progress",
+      "assignee": "team_b"
+    }
+  ]
+}

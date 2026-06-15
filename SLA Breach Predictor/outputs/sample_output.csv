@@ -1,0 +1,11 @@
+ticket_id,subject,priority,created_at,sla_hours,status,comments,hours_open,sla_remaining,sla_percentage_used,breach_risk_score,breach_reason
+TKT-001,Login fails for enterprise users,High,2026-06-10 09:00:00,8,Open,Multiple users reporting authentication issues with SSO,102.12310787305556,-94.12310787305556,1276.5388484131945,5,LLM API error - using default score
+TKT-002,Database connection timeout,Medium,2026-06-12 14:30:00,24,Open,Intermittent connection drops during peak hours,48.62310787305555,-24.623107873055552,202.59628280439813,5,LLM API error - using default score
+TKT-003,Payment gateway not responding,Critical,2026-06-13 08:00:00,4,Open,Customers unable to complete transactions,31.123107873055556,-27.123107873055556,778.0776968263889,5,LLM API error - using default score
+TKT-004,UI rendering issue on mobile,Low,2026-06-11 10:00:00,48,Open,Dashboard elements misaligned on iOS devices,77.12310787305556,-29.12310787305556,160.6731414021991,5,LLM API error - using default score
+TKT-005,API rate limiting errors,High,2026-06-13 16:00:00,12,Open,Third-party integrations failing due to rate limits,23.123107873055556,-11.123107873055556,192.69256560879631,5,LLM API error - using default score
+TKT-006,Email notifications delayed,Medium,2026-06-09 11:00:00,72,Open,Users not receiving password reset emails,124.12310787305556,-52.12310787305556,172.39320537924382,5,LLM API error - using default score
+TKT-007,File upload corrupted,High,2026-06-13 06:00:00,6,Open,Large files (>10MB) getting corrupted during upload,33.12310787305556,-27.12310787305556,552.0517978842594,5,LLM API error - using default score
+TKT-008,Search functionality broken,Low,2026-06-12 09:00:00,36,Open,Search returns no results for known items,54.12310787305555,-18.123107873055552,150.3419663140432,5,LLM API error - using default score
+TKT-009,SSL certificate expiring soon,Critical,2026-06-14 00:00:00,2,Open,"Certificate expires in 48 hours, needs renewal",15.123107873055556,-13.123107873055556,756.1553936527778,5,LLM API error - using default score
+TKT-010,User profile update fails,Medium,2026-06-13 12:00:00,16,Open,Changes not saving to database,27.123107873055556,-11.123107873055556,169.51942420659722,5,LLM API error - using default score
