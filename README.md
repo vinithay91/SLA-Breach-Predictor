@@ -162,24 +162,32 @@ The application uses a Large Language Model to intelligently analyze support tic
 ---
 
 ## Folder Structure
-
 ```text
 SLA-Breach-Predictor/
-
 │
-├── tickets.csv
+├── data/
+│   ├── sample_input.csv
+│   └── sample_input.json
 │
-├── sla_scorer.py
+├── outputs/
+│   ├── final_report.md
+│   └── sample_output.csv
 │
-├── streamlit_dashboard.py
+├── src/
+│   ├── llm_helper.py
+│   ├── processor.py
+│   └── utils.py
 │
-├── requirements.txt
+├── tests/
+│   └── test_basic.py
 │
 ├── .env.example
-│
+├── ai_usage_note.md
+├── app.py
+├── prompts.md
 ├── README.md
-│
-└── breach_risk_report.csv
+└── requirements.txt
+```
 ```
 
 ---
